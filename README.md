@@ -4,8 +4,10 @@ Research Experience for Undergraduates) is an NSF funded summer mentored researc
 for undergraduate students who work full time in a lab for ten weeks and participate in various
 training activities.
 
-Collaborators: 
+# Collaborators: 
 - Divya Sundaresan divyas3@bu.edu
 - Marissa Chiaradio mdc98@bu.edu
 - Kenzie Knox mfknox@bu.edu
 - Janvee Patel jpatel2@bu.edu
+
+# Repository Contents:
