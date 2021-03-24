@@ -26,7 +26,7 @@ c.execute('''create table Applicant(
 				major text,
 				gpa float,
 				comcollege text,
-				experience text,
+				compexperience text,
 				referenced text,
 				reviewstatus text,
 				submitdate date, 
