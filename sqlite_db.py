@@ -34,7 +34,7 @@ c.execute('''create table if not exists Applicant(
 				computationalexperience text,
 				howheardabout text,
 				reviewstatus text,
-				submitdate date, 
+				submitdate date,
 				documents blob);''')
 
 
@@ -43,9 +43,9 @@ c.execute('''create table if not exists Reviewer(
 				rid integer not null primary key,
 				lname text,
 				fname text);''')
-				
-				
-#create table Review 
+
+
+#create table Review
 c.execute('''create table if not exists Review(
 				aid integer,
 				rid integer,
@@ -63,7 +63,7 @@ c.execute('''create table if not exists Candidate(
 
 
 conn.commit()
-conn.close()		
+conn.close()
 
 #import data from csv file
 import pandas as pd
@@ -72,6 +72,7 @@ from pandas import DataFrame
 conn = sqlite3.connect('BRITEREU.db')
 c = conn.cursor()
 
-read_file = pd.read_csv('BU_BRITE_REU_2021_Application_F2021-03-06_19_43_49_shuffle.csv')
+read_file = pd.read_csv('BU_BRITE_REU_2021_Application_F2021-03-06_19_43_49_shuffle.csv',encoding = "ISO-8859-1")
+read_file.columns = read_file.columns.str.strip()
 read_file.columns = read_file.columns.str.replace('\s+', '').str.lower()  #can change the '' to '_' if that is better
 read_file.to_sql('Applicant', conn, if_exists='append', index=False)
