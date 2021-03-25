@@ -53,7 +53,14 @@ c.execute('''create table if not exists Review(
 				foreign key(aid)
 					references Applicant(aid),
 				foreign key(rid)
-					references Reviewer(rid));''')	
+					references Reviewer(rid));''')
+
+#create table Candidate
+c.execute('''create table if not exists Candidate(
+				cid integer not null primary key,
+				ranking text,
+				assigned text);''')
+
 
 conn.commit()
 conn.close()		
