@@ -37,7 +37,7 @@ try:
     #print results of query to html table
     for row in results:
         print("<tr><td>%s</td><td>%s</td><td>%s</td></tr>" % (row[0], row[1], row[2]))
-    cursor.close()
+    c.close()
     connection.close()
 
 #query does not execute properly
