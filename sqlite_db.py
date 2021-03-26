@@ -76,3 +76,20 @@ read_file = pd.read_csv('BU_BRITE_REU_2021_Application_F2021-03-06_19_43_49_shuf
 read_file.columns = read_file.columns.str.strip()
 read_file.columns = read_file.columns.str.replace('\s+', '').str.lower()  #can change the '' to '_' if that is better
 read_file.to_sql('Applicant', conn, if_exists='append', index=False)
+
+
+#insert statements to add our names into reviewer table 
+c.execute('''INSERT INTO Reviewer(lname, fname) 
+			Values('Chiaradio', 'Marissa')''')
+
+c.execute('''INSERT INTO Reviewer(lname, fname)
+			Values('Knox', 'Kenzie')''')
+			
+c.execute('''INSERT INTO Reviewer(lname, fname)
+			Values('Patel', 'Janvee')''')
+			
+c.execute('''INSERT INTO Reviewer(lname, fname)
+			Values('Sundaresan', 'Divya')''')
+
+conn.commit()
+conn.close()
