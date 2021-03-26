@@ -1,11 +1,12 @@
 #!/usr/bin/python
 
-#also I don't see any use of including cgi here because all this script is doing is showing data
+#this script is a draft to only show the applicant table
+#it will be expanded to include more functionality such as selecting the applicant to go to their applicant page, etc. 
+
 import sys
 import cgi
 import cgitb
 import sqlite3
-
 cgitb.enable()
 
 #start html
@@ -16,6 +17,7 @@ print("<body>")
 print("<h1>Applicant Information</h1>")
 
 #did not include form action here in this script since user is not inputting anything yet
+#will expand to include when user inputs information such as selection of applicant
 
 #start table
 print("<table id=Applicant>")
