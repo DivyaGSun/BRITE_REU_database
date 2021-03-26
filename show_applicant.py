@@ -32,7 +32,7 @@ try:
     connection = sqlite3.connect('BRITEREU.db')
     c = connection.cursor()
     #execute query
-    c.execute(query)
+    c.execute(query1)
     #get results to above standard query
     results = c.fetchall()
     
