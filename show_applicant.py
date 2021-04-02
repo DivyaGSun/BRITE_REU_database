@@ -17,7 +17,7 @@ print("<html><head>")
 print("<title>BRITE REU Applicants</title>")
 #print('''<link rel="stylesheet" href="/home/assets/css/bootstrap.min.css>''')
 print('''<style>
-body {margin:30;padding:30}
+body {margin:30;padding:30;}
 #Applicant {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         border-collapse: collapse;
@@ -48,7 +48,7 @@ print("<h3>Select applicant ID to write review</h3>")
 #did not include form action right now
 #print('''<form action="https://bioed.bu.edu/cgi-bin/students_21/jpatel2/show_applicant.py" method="post" >
 # </form>''')
-print('''<table id= Applicant class="dataframe">''')
+print('<table id= Applicant class="dataframe">')
 print("<tr><th>Applicant ID</th><th>First Name</th><th>Last Name</th><th>Email Address</th><th>Date Submitted</th><th>Review Status</th></tr>")
 
 #query to print applicant data
@@ -67,8 +67,7 @@ except Exception:
     print("<p><font> color=red><b>Error</b></font></p>")
 
 for row in results:
-    print('''<tr><td><a href="http://example.com">%s</a></td><td>%s</td><td>%s</td>><td>%s</td><td>%s</td><td>%s</td></tr>''' % (row[0], row[1], row[2], row[3], row[4], row[5]))
-
+    print('''<tr><td><a href="http://example.com">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>''' % (row[0], row[1], row[2], row[3], row[4], row[5]))
 c.close()
 connection.close()
 
