@@ -44,6 +44,7 @@ body {margin:30;padding:30}
 </head>''')
 print("<body>")
 print("<h1>Applicant Information</h1>")
+print("<h3>Select applicant ID to write review</h3>")
 #did not include form action right now
 #print('''<form action="https://bioed.bu.edu/cgi-bin/students_21/jpatel2/show_applicant.py" method="post" >
 # </form>''')
@@ -91,5 +92,6 @@ print('''<script data-config="">
             var tf = new TableFilter(Applicant, filtersConfig);
             tf.init();
           </script>''')
+
 print("</body> </html>")
 #print("</html>")
