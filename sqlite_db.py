@@ -39,21 +39,22 @@ c.execute('''create table if not exists Applicant(
 
 
 #create table Reviewer
-c.execute('''create table if not exists Reviewer(
-				rid integer not null primary key,
+c.execute('''create table if not exists User(
+				uid integer not null primary key,
 				lname text,
-				fname text);''')
+				fname text,
+				role text);''')
 
 
 #create table Review
 c.execute('''create table if not exists Review(
 				aid integer,
-				rid integer,
-				primary key(aid, rid),
+				uid integer,
+				primary key(aid, uid),
 				foreign key(aid)
 					references Applicant(aid),
-				foreign key(rid)
-					references Reviewer(rid));''')
+				foreign key(uid)
+					references User(uid));''')
 
 #create table Candidate
 c.execute('''create table if not exists Candidate(
@@ -79,17 +80,17 @@ read_file.to_sql('Applicant', conn, if_exists='append', index=False)
 
 
 #insert statements to add our names into reviewer table 
-c.execute('''INSERT INTO Reviewer(lname, fname) 
-			Values('Chiaradio', 'Marissa')''')
+c.execute('''INSERT INTO User(lname, fname, role) 
+			Values('Chiaradio', 'Marissa', 'reviewer')''')
 
-c.execute('''INSERT INTO Reviewer(lname, fname)
-			Values('Knox', 'Kenzie')''')
+c.execute('''INSERT INTO User(lname, fname, role)
+			Values('Knox', 'Kenzie', 'reviewer')''')
 			
-c.execute('''INSERT INTO Reviewer(lname, fname)
-			Values('Patel', 'Janvee')''')
+c.execute('''INSERT INTO User(lname, fname, role)
+			Values('Patel', 'Janvee', 'reviewer')''')
 			
-c.execute('''INSERT INTO Reviewer(lname, fname)
-			Values('Sundaresan', 'Divya')''')
+c.execute('''INSERT INTO User(lname, fname, role)
+			Values('Sundaresan', 'Divya', 'reviewer')''')
 
 conn.commit()
 conn.close()
