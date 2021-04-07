@@ -11,12 +11,45 @@ cgitb.enable()
 
 print("Content-type: text/html\n")
 print('<meta charset="utf-8">')
+print("<html><head>")
+print('''<style>
+body {margin:30;padding:30;}
+
+h1 {
+  font-size: 30px;
+  color: #000;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
+#Applicant {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+}
+
+#Applicant td, #Applicant th {
+        border: 1px solid #ddd;
+        padding: 8px;
+}
+
+#Applicant th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #5C30B2;
+        color: white;
+}
+</style>
+
+</head>''')
 
 print("<body>")
-print("<h1>Reviewer Information</h1>")
-
+print("<h1>Applicant Information</h1>")
 print('''<form name="myForm" form action="https://bioed.bu.edu/cgi-bin/students_21/divyas3/reviewer.py" method="post" >
 		<input type ='hidden' id='ID' name="AID" >
+        <input type="text" name="Review"><br>
+        <input type="submit" value="Submit">
 		</form>''')
 
 
