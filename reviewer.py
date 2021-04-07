@@ -22,6 +22,9 @@ h1 {
   padding-bottom: 5px;
 }
 
+label {display:block;}
+textarea {display:block;}
+
 #Applicant {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         border-collapse: collapse;
@@ -46,12 +49,14 @@ h1 {
 
 print("<body>")
 print("<h1>Applicant Information</h1>")
+
 print('''<form name="myForm" form action="https://bioed.bu.edu/cgi-bin/students_21/divyas3/reviewer.py" method="post" >
 		<input type ='hidden' id='ID' name="AID" >
-        <input type="text" name="Review"><br>
+
+        <label for="Review">Review of Applicant:</label>
+        <textarea id="Review" name="Review" rows="20" cols="80" ></textarea>
         <input type="submit" value="Submit">
 		</form>''')
-
 
 # get the form
 form = cgi.FieldStorage()
