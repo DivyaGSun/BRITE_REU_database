@@ -67,7 +67,7 @@ except Exception:
     print("<p><font> color=red><b>Error</b></font></p>")
 
 for row in results:
-    print('''<tr><td><a href="http://example.com">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>''' % (row[0], row[1], row[2], row[3], row[4], row[5]))
+    print('''<tr><td><a href="https://bioed.bu.edu/cgi-bin/students_21/divyas3/reviewer.py?AID=%s">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>''' % (row[0],row[0], row[1], row[2], row[3], row[4], row[5]))
 c.close()
 connection.close()
 
