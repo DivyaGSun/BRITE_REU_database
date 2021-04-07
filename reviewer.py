@@ -62,6 +62,7 @@ print('''<form name="myForm" form action="https://bioed.bu.edu/cgi-bin/students_
 form = cgi.FieldStorage()
 # get three values from the form
 AID = form.getvalue('AID')
+Rev = form.getvalue('Review')
 
 query1 = """SELECT aid, firstname, lastname, emailaddress, submitdate, reviewstatus
 FROM Applicant
@@ -83,6 +84,10 @@ print("<tr><th>Applicant ID</th><th>First Name</th><th>Last Name</th><th>Email A
 
 for row in results:
     print('''<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>''' % (row[0], row[1], row[2], row[3], row[4], row[5]))
+
+#if Rev:
+    #'''query = UPDATE reviews set review = %s where aid =%s'''(%Rev, %AID)
+    #print("<h2>Thanks your Review for Applicant Id %s have been recorded!</h2>" %AID)
 c.close()
 connection.close()
 print("</table>")
