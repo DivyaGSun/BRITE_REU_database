@@ -18,6 +18,14 @@ print("<title>BRITE REU Applicants</title>")
 #print('''<link rel="stylesheet" href="/home/assets/css/bootstrap.min.css>''')
 print('''<style>
 body {margin:30;padding:30;}
+
+h1 {
+  font-size: 30px;
+  color: #000;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
 #Applicant {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         border-collapse: collapse;
