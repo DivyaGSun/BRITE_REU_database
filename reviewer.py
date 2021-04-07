@@ -48,12 +48,12 @@ textarea {display:block;}
 </head>''')
 
 print("<body>")
-print("<h1>Applicant Information</h1>")
+print("<h1>Submit a Review</h1>")
 
 print('''<form name="myForm" form action="https://bioed.bu.edu/cgi-bin/students_21/divyas3/reviewer.py" method="post" >
 		<input type ='hidden' id='ID' name="AID" >
 
-        <label for="Review">Review of Applicant:</label>
+        <label for="Review">Enter review of Applicant:</label>
         <textarea id="Review" name="Review" rows="20" cols="80" ></textarea>
         <input type="submit" value="Submit">
 		</form>''')
@@ -79,6 +79,7 @@ try:
 except Exception:
     print("<p><font> color=red><b>Error</b></font></p>")
 
+print("<h3>Applicant Information</h3>")
 print("<table id=Applicant>")
 print("<tr><th>Applicant ID</th><th>First Name</th><th>Last Name</th><th>Email Address</th><th>Date Submitted</th><th>Review Status</th></tr>")
 
@@ -91,5 +92,7 @@ for row in results:
 c.close()
 connection.close()
 print("</table>")
+print('Link to download full application:---(hyperlink this)')
 #add reviewers past information
+print("<h3>Previous Reviews Completed</h3>")
 print("</body></html>")
