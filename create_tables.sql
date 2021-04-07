@@ -6,7 +6,7 @@ BEGIN TRANSACTION;
 ********************************************************************************/
 
 DROP TABLE IF EXISTS Applicant;
-DROP TABLE IF EXISTS Reviewer;
+DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Review;
 /*******************************************************************************
    Create Tables
@@ -43,20 +43,21 @@ CREATE TABLE Applicant (
 ) WITHOUT ROWID;
 
 
-create table Reviewer (
-  rid integer not null auto_increment primary key,
-  lname text,
-  fname text
+create table User (
+  uid integer not null auto_increment primary key,
+  	lname text,
+  	fname text,
+  	role text, 
 ) WITHOUT ROWID;
 
 
 
 create table Review (
   aid integer,
-	rid integer,
-	primary key(aid, rid),
+	uid integer,
+	primary key(aid, uid),
 	foreign key(aid) references Applicant(aid),
-	foreign key(rid) references Reviewer(rid)
+	foreign key(uid) references User(uid)
 ) WITHOUT ROWID;
 --*******************************************************
 
