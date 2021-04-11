@@ -38,7 +38,7 @@ c.execute('''create table if not exists Applicant(
 				documents blob);''')
 
 
-#create table Reviewer
+#create table User
 c.execute('''create table if not exists User(
 				uid integer not null primary key,
 				lname text,
@@ -50,6 +50,7 @@ c.execute('''create table if not exists User(
 c.execute('''create table if not exists Review(
 				aid integer,
 				uid integer,
+				reviews blob, 
 				primary key(aid, uid),
 				foreign key(aid)
 					references Applicant(aid),
@@ -79,16 +80,16 @@ read_file.columns = read_file.columns.str.replace('\s+', '').str.lower()  #can c
 read_file.to_sql('Applicant', conn, if_exists='append', index=False)
 
 
-#insert statements to add our names into reviewer table 
-c.execute('''INSERT INTO User(lname, fname, role) 
+#insert statements to add our names into reviewer table
+c.execute('''INSERT INTO User(lname, fname, role)
 			Values('Chiaradio', 'Marissa', 'reviewer')''')
 
 c.execute('''INSERT INTO User(lname, fname, role)
 			Values('Knox', 'Kenzie', 'reviewer')''')
-			
+
 c.execute('''INSERT INTO User(lname, fname, role)
 			Values('Patel', 'Janvee', 'reviewer')''')
-			
+
 c.execute('''INSERT INTO User(lname, fname, role)
 			Values('Sundaresan', 'Divya', 'reviewer')''')
 
