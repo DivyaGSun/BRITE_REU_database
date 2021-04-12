@@ -52,15 +52,15 @@ h1 {
 </head>''')
 print("<body>")
 print("<h1>Applicant Information</h1>")
-print("<h3>Select applicant ID to write review</h3>")
+print("<h3>Select applicant ID to write review | Click on ? for types of Filtering</h3>")
 #did not include form action right now
 #print('''<form action="https://bioed.bu.edu/cgi-bin/students_21/jpatel2/show_applicant.py" method="post" >
 # </form>''')
 print('<table id= Applicant class="dataframe">')
-print("<tr><th>Applicant ID</th><th>First Name</th><th>Last Name</th><th>Email Address</th><th>Date Submitted</th><th>Review Status</th></tr>")
+print("<tr><th>Applicant ID</th><th>Full Application</th><th>First Name</th><th>Last Name</th><th>Country</th><th>First Gen</th><th>School</th><th>Standing</th><th>Major</th><th>GPA</th><th>Date Submitted</th><th>Review Status</th></tr>")
 
 #query to print applicant data
-query1 = "SELECT aid, firstname, lastname, emailaddress, submitdate, reviewstatus FROM Applicant;"
+query1 = "SELECT aid, documents, firstname, lastname, country, firstgen, institution, standing, major, gpa, submitdate, reviewstatus FROM Applicant;"
 
 
 connection = sqlite3.connect('BRITEREU.db')
@@ -76,7 +76,7 @@ except Exception:
 
 #added proper URL for reference to reviewer page
 for row in results:
-    print('''<tr><td><a href="https://bioed.bu.edu/cgi-bin/students_21/divyas3/reviewer.py?AID=%s">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>''' % (row[0],row[0], row[1], row[2], row[3], row[4], row[5]))
+    print('''<tr><td><a href="https://bioed.bu.edu/cgi-bin/students_21/divyas3/reviewer.py?AID=%s">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>''' % (row[0],row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9], row[10], row[11]))
 c.close()
 connection.close()
 
