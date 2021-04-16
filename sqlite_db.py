@@ -4,9 +4,10 @@ conn = sqlite3.connect('BRITEREU.db')
 c = conn.cursor()
 
 #drop tables - can comment out when tables are ready
-c.execute('DROP TABLE Applicant;')
-c.execute('DROP TABLE Reviewer;')
-c.execute('DROP TABLE Review;')
+#c.execute('DROP TABLE Applicant;')
+#c.execute('DROP TABLE User;')
+#c.execute('DROP TABLE Review;')
+#c.execute('DROP TABLE Candidate;')
 
 #create table Applicant
 c.execute('''create table if not exists Applicant(
@@ -48,10 +49,12 @@ c.execute('''create table if not exists User(
 
 #create table Review
 c.execute('''create table if not exists Review(
+				rid integer,
 				aid integer,
 				uid integer,
-				reviews blob, 
-				primary key(aid, uid),
+				reviews blob,
+				created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+				primary key(rid),
 				foreign key(aid)
 					references Applicant(aid),
 				foreign key(uid)
