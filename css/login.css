@@ -1,0 +1,181 @@
+
+
+body{
+  /* The image used */
+  background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/74/48/nG3u2q.jpg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  z-index: -1;
+}
+#my_form {
+    font-family: 'Ubuntu', 'Lato', sans-serif;
+    font-weight: 400;
+    /* Size and position */
+    width: 300px;
+    position: relative;
+    margin: 60px auto 30px;
+    padding: 10px;
+    overflow: hidden;
+
+    /* Styles */
+    background: #111;
+    border-radius: 0.4em;
+    border: 1px solid #191919;
+    box-shadow:
+        inset 0 0 2px 1px rgba(255,255,255,0.08),
+        0 16px 10px -8px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    bottom: -100;
+}
+
+#my_form label {
+    /* Size and position */
+    width: 50%;
+    float: left;
+    padding-top: 9px;
+
+    /* Styles */
+    color: #ddd;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 0 #000;
+    text-indent: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#my_form input[type=text],
+#my_form input[type=password] {
+    /* Size and position */
+    width: 50%;
+    float: left;
+    padding: 8px 5px;
+    margin-bottom: 10px;
+    font-size: 12px;
+
+    /* Styles */
+    background: linear-gradient(#1f2124, #27292c);
+    border: 1px solid #000;
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.1);
+    border-radius: 3px;
+
+    /* Font styles */
+    font-family: 'Ubuntu', 'Lato', sans-serif;
+    color: #fff;
+
+}
+
+#my_form input[type=text]:hover,
+#my_form input[type=password]:hover,
+#my_form label:hover ~ input[type=text],
+#my_form label:hover ~ input[type=password] {
+    background: #27292c;
+}
+
+#my_form input[type=text]:focus,
+#my_form input[type=password]:focus {
+    box-shadow: inset 0 0 2px #000;
+    background: #494d54;
+    border-color: #51cbee;
+    outline: none; /* Remove Chrome outline */
+}
+
+
+#my_form p:nth-child(4),
+#my_form p:nth-child(5) {
+    float: left;
+    width: 50%;
+}
+
+#my_form label[for=remember] {
+    width: auto;
+    float: none;
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    text-indent: 2px;
+}
+
+
+#my_form input[type=submit] {
+    /* Width and position */
+    width: 100%;
+    padding: 8px 5px;
+
+    /* Styles */
+    border: 1px solid #0273dd; /* Fallback */
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.3),
+        inset 0 10px 10px rgba(255,255,255,0.1);
+    border-radius: 3px;
+    background: #38a6f0;
+    cursor:pointer;
+
+    /* Font styles */
+    font-family: 'Ubuntu', 'Lato', sans-serif;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+}
+
+#my_form input[type=submit]:hover {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+#my_form input[type=submit]:active {
+    background: #287db5;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+    border-color: #000; /* Fallback */
+    border-color: rgba(0,0,0,0.9);
+}
+
+#no-boxshadow #my_form input[type=submit]:hover {
+    background: #2a92d8;
+}
+
+#my_form input[type=button] {
+    /* Width and position */
+    width: 100%;
+    padding: 8px 5px;
+
+    /* Styles */
+    border: 1px solid #0273dd; /* Fallback */
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.3),
+        inset 0 10px 10px rgba(255,255,255,0.1);
+    border-radius: 3px;
+    background: #cc0000;
+    cursor:pointer;
+
+    /* Font styles */
+    font-family: 'Ubuntu', 'Lato', sans-serif;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+}
+
+#my_form input[type=button]:hover {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+#my_form input[type=button]:active {
+    background: #4d0303;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+    border-color: #000; /* Fallback */
+    border-color: rgba(0,0,0,0.9);
+}
+
+#no-boxshadow #my_form input[type=button]:hover {
+    background: #7a0000;
+}
