@@ -68,6 +68,16 @@ c.execute('''create table if not exists Candidate(
 				ranking text,
 				assigned text);''')
 
+#create Faculty rank candidate table 
+c.execute('''create table if not exists Faculty_Rank_Can(
+				cid integer,
+				uid integer, 
+				rank integer,
+				foreign key(cid)
+					references Candidate(cid),
+				foreign key(uid)
+					references User(uid));''')
+
 
 conn.commit()
 conn.close()
