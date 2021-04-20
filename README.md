@@ -2,7 +2,8 @@
 The BRITE REU Program (Bioinformatics Research and Interdisciplinary Training Experience –
 Research Experience for Undergraduates) is an NSF funded summer mentored research program
 for undergraduate students who work full time in a lab for ten weeks and participate in various
-training activities. We have created a portal for reviews and matching off applicants to faculty.
+training activities. We have created a portal for reviews and matching applicants to faculty using
+sqlite3 and python.
 
 ### Collaborators: 
 - Divya Sundaresan divyas3@bu.edu
