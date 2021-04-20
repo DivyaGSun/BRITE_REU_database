@@ -15,42 +15,20 @@ print("Content-type: text/html\n")
 print('<meta charset="utf-8">')
 print("<html><head>")
 print("<title>BRITE REU Applicants</title>")
-#print('''<link rel="stylesheet" href="/home/assets/css/bootstrap.min.css>''')
-print('''<style>
-body {margin:30;padding:30;}
+print('''
+      <link rel="stylesheet" href="https://bioed.bu.edu/students_21/group_proj/group_K/css/nav.css">
+      <link rel="stylesheet" href="https://bioed.bu.edu/students_21/group_proj/group_K/css/reviewer.css">
 
-h1 {
-  font-size: 30px;
-  color: #000;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 5px;
-}
-
-#Applicant {
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-}
-
-#Applicant td, #Applicant th {
-        border: 1px solid #ddd;
-        padding: 8px;
-}
-
-#Applicant tr:nth-child(even){background-color: #f2f2f2;}
-
-#Applicant tr:hover {background-color: #ddd;}
-
-#Applicant th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #5C30B2;
-        color: white;
-}
-</style>
 </head>''')
 print("<body>")
+print('''<div id="bg-image">''')
+print('''<div id ="topnav">
+  <a class="active" href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/show_applicant.py">Applicant List</a>
+  <a  href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/applicant_stats.py">Applicant Statistics</a>
+  <a  href="#about">My Past Reviews</a>
+  <a  href="#contact">About/Contact</a>
+
+</div>''')
 print("<h1>Applicant Information</h1>")
 print("<h3>Select applicant ID to write review | Click on ? for types of Filtering</h3>")
 #did not include form action right now
@@ -82,7 +60,7 @@ connection.close()
 
 print("</table>")
 #print("</body>")
-print('''<script src="https://bioed.bu.edu/students_21/divyas3/tablefilter/tablefilter.js"></script>''')
+print('''<script src="https://bioed.bu.edu/students_21/group_proj/group_K/tablefilter/tablefilter.js"></script>''')
 print('''<script data-config="">
  var filtersConfig = {
      base_path: 'https://bioed.bu.edu/students_21/divyas3/tablefilter/',
