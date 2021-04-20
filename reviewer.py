@@ -13,65 +13,37 @@ cgitb.enable()
 print("Content-type: text/html\n")
 print('<meta charset="utf-8">')
 print("<html><head>")
-print('''<style>
-body {margin:30;padding:30;}
+print('''
 
-h1 {
-  font-size: 30px;
-  color: #000;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 5px;
-}
+<link rel="stylesheet" href="https://bioed.bu.edu/students_21/group_proj/group_K/css/nav.css">
+<link rel="stylesheet" href="https://bioed.bu.edu/students_21/group_proj/group_K/css/reviewer.css">
 
-label {display:block;}
-textarea {display:block;}
-
-#Applicant {
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-}
-
-#Applicant td, #Applicant th {
-        border: 1px solid #ddd;
-        padding: 8px;
-}
-
-#Applicant th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #5C30B2;
-        color: white;
-}
-</style>
 
 </head>''')
 
+
+
 print("<body>")
-print("<h1>Submit a Review</h1>")
-
-# print('''<form name="myForm" form action="https://bioed.bu.edu/cgi-bin/students_21/divyas3/reviewer.py" method="post" >
-# 		<input type ='hidden' id='ID' name="AID" value = AID>
-#
-#         <label for="Review">Enter review of Applicant:</label>
-#         <textarea id="Review" name="Review" rows="20" cols="80" ></textarea>
-#         <input type="submit" onclick= "clicked()" value="Submit">
-# 		</form>''')
-
-# get the form
 form = cgi.FieldStorage()
 # get three values from the form
 AID = str(form.getvalue('AID'))
 Rev = form.getvalue('Review')
 UID = str(0)
-AIDs = str(AID)
+print('''<div id="bg-image">''')
+print('''<div id ="topnav">
+  <a href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/show_applicant.py">Applicant List</a>
+  <a href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/applicant_stats.py">Applicant Statistics</a>
+  <a href="#past_reviews">My Past Reviews</a>
+  <a href="#contact">About/Contact</a>
 
-#
+</div>''')
+print("<h1>Submit a Review</h1>")
+
+
 print('''<form name="myForm" form action="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/reviewer.py" method="GET" >
 		<input type ='hidden' id='ID' name="AID" value = %s>
 
-        <label for="Review">Enter review of Applicant:</label>
+        <label for="Review"><br>Enter review of Applicant:</label>
         <textarea id="Review" name="Review" rows="20" cols="80" ></textarea>
         <input type="submit" onclick= "clicked()" value="Submit">
 		</form>'''%(AID))
@@ -85,6 +57,10 @@ query1 = """SELECT aid, firstname, lastname, emailaddress, submitdate, reviewsta
 FROM Applicant
 WHERE aid='%s';""" %(AID)
 
+query2 = """SELECT created_at, reviews
+FROM Review
+WHERE aid='%s';""" %(AID)
+
 #connection = sqlite3.connect('/https://bioed.bu.edu/students_21/divyas3/BRITEREU.db')
 connection = sqlite3.connect('db/BRITEREU.db')
 c = connection.cursor()
@@ -93,9 +69,15 @@ try:
     c.execute(query1)
     #get results to above standard query
     results = c.fetchall()
+    #execute query
+    c.execute(query2)
+    #get results to above standard query
+    past_reviews = c.fetchall()
+
 
 except Exception:
     print("<p><font> color=red><b>Error</b></font></p>")
+
 
 print("<h3>Applicant Information</h3>")
 print("<table id=Applicant>")
@@ -105,14 +87,13 @@ for row in results:
     print('''<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>''' % (row[0], row[1], row[2], row[3], row[4], row[5]))
 
 print("</table>")
+
 if Rev:
-    print('true')
-if Rev:
-    print(AIDs)
     insert = "INSERT INTO Review (aid,uid,reviews) VALUES (?,?,?)"
-    print(str(insert))
+    update = '''UPDATE Applicant set reviewstatus = 'Completed' WHERE aid='%s';''' %(AID)
     try:
-        c.execute(insert, (AIDs, UID , Rev))
+        c.execute(insert, (AID, UID , Rev))
+        c.execute(update)
         connection.commit()
     #except Exception as sqlError:
        # print(sqlError)
@@ -138,8 +119,24 @@ connection.close()
 #print("</table>")
 
 print('Link to download full application:---(hyperlink this)')
-#add reviewers past information
-print("<h3>Previous Reviews Completed</h3>")
+
+print('''<br><br><br><a href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/show_applicant.py" class="button">Back to Applicant Page </a>''')
+
+items =[]
+for row in past_reviews:
+    items.append(row)
+items = [list(ele) for ele in items]
+print('''<div id="past_rev">
+      <h3>Previous Reviews Completed</h3>
+      <p><i>If other reviews for this applicant have been completed they will be listed here </i></p>
+      <table id = Review>''')
+for i in items:
+    print ('<tr>')
+    print ('<td>'+i[0]+'</td><td>'+i[1]+'</td>')
+    print('</tr>')
+print('''</table>
+      </div>''')
+
 
 print('''<script type="text/javascript">
     function clicked() {
@@ -149,6 +146,8 @@ print('''<script type="text/javascript">
            return false;
        }
     }
+
+
 
 </script>''')
 print("</body></html>")
