@@ -8,6 +8,8 @@ c.execute('DROP TABLE Applicant;')
 c.execute('DROP TABLE User;')
 c.execute('DROP TABLE Review;')
 c.execute('DROP TABLE Candidate;')
+c.execute('DROP TABLE Assignment;')
+c.execute('DROP TABLE Faculty_Rank_Can;')
 
 #create table Applicant
 c.execute('''create table if not exists Applicant(
@@ -67,6 +69,15 @@ c.execute('''create table if not exists Candidate(
 				cid integer not null primary key,
 				assigned text);''')
 
+#create table Project - this table stores faculty with their projects from the Input Projects page
+#please feel free to change this table
+c.execute('''create table if not exists Project(
+				uid integer,
+				project text,
+				primary key(uid, text),
+				foreign key(uid)
+					references User(uid));''')
+
 #create table Assignment - this table is used to store candidate and faculty assignment pairs from the Assign Candidates to Faculty Members page
 c.execute('''create table if not exists Assignment(
 				cid integer,
@@ -104,18 +115,14 @@ read_file.columns = read_file.columns.str.replace('\s+', '').str.lower()  #can c
 read_file.to_sql('Applicant', conn, if_exists='append', index=False)
 
 
-#insert statements to add our names into reviewer table
+#insert statements to add our names into user table
 c.execute('''INSERT INTO User(lname, fname, role)
-			Values('Chiaradio', 'Marissa', 'reviewer')''')
+			Values('Chiaradio', 'Marissa', 'reviewer'), ('Knox', 'Kenzie', 'reviewer'), ('Patel', 'Janvee', 'reviewer'), ('Sundaresan', 'Divya', 'reviewer')''')
 
+#insert statements to add sample faculty names into the user table
 c.execute('''INSERT INTO User(lname, fname, role)
-			Values('Knox', 'Kenzie', 'reviewer')''')
+			Values('Z', 'A', 'faculty'), ('Y', 'B', 'faculty'), ('X', 'C', 'faculty'), ('W', 'D', 'faculty')''')
 
-c.execute('''INSERT INTO User(lname, fname, role)
-			Values('Patel', 'Janvee', 'reviewer')''')
-
-c.execute('''INSERT INTO User(lname, fname, role)
-			Values('Sundaresan', 'Divya', 'reviewer')''')
 
 conn.commit()
 conn.close()
