@@ -72,9 +72,10 @@ c.execute('''create table if not exists Candidate(
 #create table Project - this table stores faculty with their projects from the Input Projects page
 #please feel free to change this table
 c.execute('''create table if not exists Project(
+				pid integer not null primary key,
 				uid integer,
 				project_name text,
-				primary key(uid, project_name),
+				primary key(pid),
 				foreign key(uid)
 					references User(uid));''')
 
