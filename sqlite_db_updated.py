@@ -73,8 +73,8 @@ c.execute('''create table if not exists Candidate(
 #please feel free to change this table
 c.execute('''create table if not exists Project(
 				uid integer,
-				project text,
-				primary key(uid, text),
+				project_name text,
+				primary key(uid, project_name),
 				foreign key(uid)
 					references User(uid));''')
 
