@@ -23,7 +23,7 @@ print('''<div id="bg-image">''')
 print('''<div id ="topnav">
   <a  href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/show_applicant.py">Applicant List</a>
   <a  href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/applicant_stats.py">Applicant Statistics</a>
-  <a  href="#about">My Past Reviews</a>
+  <a  href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/review_summary.py">My Past Reviews</a>
   <a  class ="active" href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/help_reviewer.py">Help</a>
   <a  href="#contact">About/Contact</a>
   </div>''')
