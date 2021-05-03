@@ -82,12 +82,12 @@ c.execute('''create table if not exists Project(
 #create table Assignment - this table is used to store candidate and faculty assignment pairs from the Assign Candidates to Faculty Members page
 c.execute('''create table if not exists Assignment(
 				cid integer,
-				uid integer,
-				primary key(cid, uid),
+				pid integer,
+				primary key(cid, pid),
 				foreign key(cid)
 					references Candidate(cid),
-				foreign key(uid)
-					references User(uid));''')
+				foreign key(pid)
+					references Project(pid));''')
 
 #create Faculty rank candidate table 
 c.execute('''create table if not exists Faculty_Rank_Can(
