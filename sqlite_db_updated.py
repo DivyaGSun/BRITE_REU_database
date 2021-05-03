@@ -83,6 +83,7 @@ c.execute('''create table if not exists Project(
 c.execute('''create table if not exists Assignment(
 				cid integer,
 				pid integer,
+				assigned_at TEXT DEFAULT CURRENT_TIMESTAMP,
 				primary key(cid, pid),
 				foreign key(cid)
 					references Candidate(cid),
