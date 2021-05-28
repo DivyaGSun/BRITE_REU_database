@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+#file for inputting (1+) projects for faculty members in admin view
+
 import sys
 import cgi
 import cgitb
@@ -8,7 +10,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 cgitb.enable()
 
-# html
+#begin html
 print("Content-type: text/html\n")
 print('<meta charset="utf-8">')
 print("<html><head>")
@@ -48,17 +50,17 @@ query2 = "SELECT uid, group_concat(project_name, '\n') FROM Project GROUP BY(uid
 connection = sqlite3.connect('db/BRITEREU.db')
 c = connection.cursor()
 try:
-    #execute query 1 
+    #execute query 1 to get all faculty names
     c.execute(query1)
-    #get results to above standard query
+    #get results to above query
     results1 = c.fetchall()
 except Exception:
     print('<p><font color="red"><b>Error Query 1</b></font></p>')
 
 try:
-    #execute query 2 
+    #execute query 2 to get all projects currently stored in db
     c.execute(query2)
-    #get results to above standard query
+    #get results to above query
     results2 = c.fetchall()
 except Exception:
     print('<p><font color="red"><b>Error Query 2</b></font></p>')
@@ -66,7 +68,7 @@ except Exception:
 c.close()
 connection.close()
 
-#retrieve form data
+#retrieve form data from the project table
 form = cgi.FieldStorage()
 
 #check what textboxes are filled in and insert those project names into the Project table
@@ -100,9 +102,9 @@ query3 = "SELECT uid, group_concat(project_name, '\n') FROM Project GROUP BY(uid
 connection = sqlite3.connect('db/BRITEREU.db')
 c = connection.cursor()
 try:
-    #execute query 3 
+    #execute query 3 to get all updated projects
     c.execute(query3)
-    #get results to above standard query
+    #get results to above query
     results3 = c.fetchall()
 except Exception:
     print('<p><font color="red"><b>Error Query 1</b></font></p>')
@@ -113,9 +115,9 @@ print('''<form name="form" id="form" action="https://bioed.bu.edu/cgi-bin/studen
 print('<table id=Project class="dataframe">')
 print('''<tr><th>Faculty</th><th>Projects</th><th>Enter Project Name</th><th>Remove Project</th>''')
 
-#added proper URL for reference to reviewer page
 #print the faculty table with a textbox for each faculty member
-#add functionality to input projects currently in the database
+#if there are projects already in the db, they are printed separated by newline in the table cell adjacent to the faculty name
+#table includes both textbox to enter project name and dropdown select to remove a project - both can be filled out 
 for row in results1:
     for curr_proj in results3:
          if curr_proj[0] == row[0]:
