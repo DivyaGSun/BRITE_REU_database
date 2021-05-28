@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+#file for showing the applicant table and ability to select/remove candidates in admin view
+
 import sys
 import cgi
 import cgitb
@@ -99,6 +101,7 @@ print('<table id= Candidate class="dataframe">')
 print("<tr><th>Candidate ID</th><th>Full Application</th><th>First Name</th><th>Last Name</th><th>Remove Candidates</th></tr>")
 
 #print the candidate table
+#the candidate id is hyperlinked - this can be removed later on if this is not needed in admin view
 for row in results_candidates:
 	print('''<tr><td><a href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/reviewer.py?AID=%s" target="_blank">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td><input type="checkbox" name="rcan" value=%s /></td></tr</tr>''' % (row[0],row[0], row[1], row[2], row[3], row[0]))
 
@@ -130,7 +133,6 @@ except Exception:
 c.close()
 connection.close()
 
-
 #start Applicant form
 print('''<form name="form2" id="form2" action="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/show_applicant_admin.py" method = "get">''')
 
@@ -140,7 +142,8 @@ print("<br /><br /><h2>Applicants</h2>")
 print("<h3>Select candidates by checking the checkboxes | Click on ? for types of Filtering</h3>")
 print("<tr><th>Select Candidates</th><th>Applicant ID</th><th>Full Application</th><th>Applicant Name</th><th>Country</th><th>First Gen</th><th>School</th><th>Standing</th><th>Major</th><th>GPA</th><th>Date Submitted</th><th>Review Status</th><th>Ranking</th></tr>")
 
-#print each row of the Applicant table and added proper URL for reference to reviewer page
+#print each row of the Applicant table
+#the applicant id is hyperlinked to the submit a review page - this can be removed if not needed for admin view
 for row in results_applicants:
 	print('''<tr><td><input type="checkbox" name="candidates" value=%s /></td><td><a href="https://bioed.bu.edu/cgi-bin/students_21/group_proj/group_K/reviewer.py?AID=%s" target="_blank">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td></td></tr>''' % (row[0], row[0],row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9], row[10]))
 
