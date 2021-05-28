@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import sys
 import cgi
 import cgitb
@@ -50,7 +51,7 @@ def show_reviewer():
             <label for="Review"><br>Enter review of Applicant:</label>
             <textarea id="Review" name="Review" rows="20" cols="80" placeholder = "Lorem ipsum dolor sit amet, te his apeirian complectitur. Ea sed prompta lobortis, eum id habemus periculis neglegentur, est eius quas placerat id. Ea duo dicit impetus oblique, dolor consul verear in vix. Ex quo cibo vitae fabulas. Ex vel meis omittantur, an modo wisi ius. Pro erat aliquando conceptam ea. Duo reque scaevola argumentum ea, dicat omittam an nec, in cibo numquam elaboraret eum. Quis voluptaria argumentum has ut." ></textarea>
             <input type="submit" onclick= "clicked()" value="Submit">
-    		</form>'''%t_ID, AID)
+    		</form>'''%(t_ID, AID))
 
     # AID = str(form.getvalue('AID'))
     # Rev = str(form.getvalue('Review'))
