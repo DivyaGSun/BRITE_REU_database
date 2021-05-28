@@ -1,0 +1,44 @@
+
+body {margin:30;padding:30;}
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
+h1 {
+  font-size: 30px;
+  color: #000;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
+#Project {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+}
+
+#Project td, #Project th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        colspan: 150;
+}
+
+#Project th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #6C547A;
+        color: white;
+
+}
+
+#Project tr:nth-child(even){background-color: #f2f2f2;}
+
+#Project tr:hover {background-color: #ddd;}
