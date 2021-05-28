@@ -1,5 +1,9 @@
+#python file to create the database in sqlite with the tables listed below
+#includes applicant data insert from csv file as well
+
 import sqlite3
 
+#create connection
 conn = sqlite3.connect('BRITEREU.db')
 c = conn.cursor()
 
@@ -8,8 +12,11 @@ c.execute('DROP TABLE Applicant;')
 c.execute('DROP TABLE User;')
 c.execute('DROP TABLE Review;')
 c.execute('DROP TABLE Candidate;')
+c.execute('DROP TABLE Project;')
+c.execute('DROP TABLE Assignment;')
+c.execute('DROP TABLE Faculty_Rank_Can;')
 
-#create table Applicant
+#create table Applicant which stores all applicant data
 c.execute('''create table if not exists Applicant(
 				aid integer not null primary key,
 				firstname text,
@@ -49,7 +56,7 @@ c.execute('''create table if not exists User(
 				role text);''')
 
 
-#create table Review
+#create table Review which stores the reviews that a Reviewer submitted for an applicant
 c.execute('''create table if not exists Review(
 				rid integer,
 				aid integer,
@@ -62,17 +69,46 @@ c.execute('''create table if not exists Review(
 				foreign key(uid)
 					references User(uid));''')
 
-#create table Candidate
+#create table Candidate which stores the applicant id number as the candidate id for all selected candidates
 c.execute('''create table if not exists Candidate(
 				cid integer not null primary key,
-				ranking text,
 				assigned text);''')
+
+#create table Project which stores stores faculty with their projects from the Input Projects page
+c.execute('''create table if not exists Project(
+				pid integer not null,
+				uid integer,
+				project_name text,
+				primary key(pid),
+				foreign key(uid)
+					references User(uid));''')
+
+#create table Assignment which is used to store candidate and faculty/project assignment pairs from the Assign Candidates to Faculty Members page
+c.execute('''create table if not exists Assignment(
+				cid integer,
+				pid integer,
+				assigned_at TEXT DEFAULT CURRENT_TIMESTAMP,
+				primary key(cid, pid),
+				foreign key(cid)
+					references Candidate(cid),
+				foreign key(pid)
+					references Project(pid));''')
+
+#create Faculty rank candidate table 
+c.execute('''create table if not exists Faculty_Rank_Can(
+				cid integer,
+				uid integer, 
+				rank integer,
+				foreign key(cid)
+					references Candidate(cid),
+				foreign key(uid)
+					references User(uid));''')
 
 
 conn.commit()
 conn.close()
 
-#import data from csv file
+#import applicant data from csv file
 import pandas as pd
 from pandas import DataFrame
 
@@ -84,19 +120,13 @@ read_file.columns = read_file.columns.str.strip()
 read_file.columns = read_file.columns.str.replace('\s+', '').str.lower()  #can change the '' to '_' if that is better
 read_file.to_sql('Applicant', conn, if_exists='append', index=False)
 
-
-#insert statements to add our names into reviewer table
+#insert statements to add our names into user table for testing purposes
 c.execute('''INSERT INTO User(lname, fname, role)
-			Values('Chiaradio', 'Marissa', 'reviewer')''')
+			Values('Chiaradio', 'Marissa', 'reviewer'), ('Knox', 'Kenzie', 'reviewer'), ('Patel', 'Janvee', 'reviewer'), ('Sundaresan', 'Divya', 'reviewer')''')
 
+#insert statements to add sample faculty names into the user table for testing purposes
 c.execute('''INSERT INTO User(lname, fname, role)
-			Values('Knox', 'Kenzie', 'reviewer')''')
-
-c.execute('''INSERT INTO User(lname, fname, role)
-			Values('Patel', 'Janvee', 'reviewer')''')
-
-c.execute('''INSERT INTO User(lname, fname, role)
-			Values('Sundaresan', 'Divya', 'reviewer')''')
+			Values('Z', 'A', 'faculty'), ('Y', 'B', 'faculty'), ('X', 'C', 'faculty'), ('W', 'D', 'faculty')''')
 
 conn.commit()
 conn.close()
